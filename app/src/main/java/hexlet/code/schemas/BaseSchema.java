@@ -3,7 +3,7 @@ package hexlet.code.schemas;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class BaseSchema {
+public abstract class BaseSchema {
 
     protected final Map<EnumRestriction, Restriction<Object>> restrictions = new LinkedHashMap<>();
     protected boolean isRequired = false;
