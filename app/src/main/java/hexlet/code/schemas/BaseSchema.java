@@ -8,7 +8,7 @@ public abstract class BaseSchema {
     protected final Map<EnumRestriction, Restriction<Object>> restrictions = new LinkedHashMap<>();
     protected boolean isRequired = false;
 
-    public boolean isValid(Object object) {
+    public final boolean isValid(Object object) {
         if (object == null) {
             return !this.isRequired;
         }
@@ -21,7 +21,7 @@ public abstract class BaseSchema {
         return true;
     }
 
-    public void clear() {
+    public final void clear() {
         this.isRequired = false;
         this.restrictions.clear();
     }
