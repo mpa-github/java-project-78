@@ -9,7 +9,7 @@ public final class MapSchema extends BaseSchema {
         return this;
     }
 
-    public MapSchema sizeOf(int size) {
+    public MapSchema sizeof(int size) {
         Restriction<Object> restriction = (map) -> map instanceof Map<?, ?>
                 && ((Map<?, ?>) map).size() == size;
         this.restrictions.put(EnumRestriction.SIZE_OF, restriction);
