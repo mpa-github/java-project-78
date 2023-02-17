@@ -1,4 +1,4 @@
-package hexlet.code.schema.string;
+package hexlet.code.schema;
 
 import hexlet.code.Validator;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,8 +12,9 @@ class StringSchemaTest {
     private static final String EMPTY_STRING = "";
     private static final String SOME_STRING = "Some string";
     private static final String LENGTH_8_STRING = "Length 8";
-    private static final String CONTAINS_WORD_STRING = "Contains 'word'";
-    private static final String WORD = "'word'";
+    private static final String LENGTH = "Length";
+    private static final String CONTAINS_WORD_STRING = "Contains word";
+    private static final String WORD = "word";
     private static StringSchema schema;
 
     @BeforeAll
@@ -23,7 +24,7 @@ class StringSchemaTest {
     }
 
     @Test
-    void testIsValid() {
+    void testStringSchema() {
         assertTrue(schema.isValid(null));
         assertTrue(schema.isValid(EMPTY_STRING));
         assertTrue(schema.isValid(SOME_STRING));
@@ -40,8 +41,14 @@ class StringSchemaTest {
         assertFalse(schema.contains(WORD).isValid(SOME_STRING));
 
         assertFalse(schema.minLength(8).isValid(LENGTH_8_STRING));
-        assertTrue(schema.contains("Length").minLength(8).isValid(LENGTH_8_STRING));
+        assertTrue(schema.contains(LENGTH).minLength(8).isValid(LENGTH_8_STRING));
         assertTrue(schema.minLength(8).isValid(LENGTH_8_STRING));
         assertFalse(schema.contains(WORD).isValid(WORD));
+
+        schema.clear();
+
+        assertTrue(schema.contains(LENGTH).isValid(null));
+        assertFalse(schema.contains(LENGTH).isValid(SOME_STRING));
+        assertFalse(schema.required().contains(LENGTH).isValid(null));
     }
 }

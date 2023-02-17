@@ -3,26 +3,26 @@ package hexlet.code.schema;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class BaseSchema<T, E> {
+public class BaseSchema {
 
-    protected final Map<E, Restriction<T>> restrictions = new LinkedHashMap<>();
-    protected final Class<T> thisClass;
-
-    public BaseSchema(Class<T> thisClass) {
-        this.thisClass = thisClass;
-    }
+    protected final Map<EnumRestriction, Restriction<Object>> restrictions = new LinkedHashMap<>();
+    protected boolean isRequired = false;
 
     public boolean isValid(Object object) {
-        if (object != null && !(thisClass.isInstance(object))) {
-            return false;
+        if (object == null) {
+            return !this.isRequired;
         }
-        T thisClassObject = thisClass.cast(object);
-        for (Map.Entry<E, Restriction<T>> entry : restrictions.entrySet()) {
-            Restriction<T> nextRestriction = entry.getValue();
-            if (!nextRestriction.check(thisClassObject)) {
+        for (Map.Entry<EnumRestriction, Restriction<Object>> entry : this.restrictions.entrySet()) {
+            Restriction<Object> nextRestriction = entry.getValue();
+            if (!nextRestriction.check(object)) {
                 return false;
             }
         }
         return true;
+    }
+
+    public void clear() {
+        this.isRequired = false;
+        this.restrictions.clear();
     }
 }
