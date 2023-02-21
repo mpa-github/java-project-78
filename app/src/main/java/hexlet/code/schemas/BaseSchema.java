@@ -5,12 +5,12 @@ import java.util.Map;
 
 public abstract class BaseSchema {
 
-    protected final Map<EnumRestriction, Restriction<Object>> restrictions = new LinkedHashMap<>();
-    protected boolean isRequired = false;
+    private final Map<EnumRestriction, Restriction<Object>> restrictions = new LinkedHashMap<>();
+    private boolean isRequired = false;
 
     public final boolean isValid(Object object) {
-        if (object == null) {
-            return !this.isRequired;
+        if (!isRequired && object == null) {
+            return true;
         }
         for (Map.Entry<EnumRestriction, Restriction<Object>> entry : this.restrictions.entrySet()) {
             Restriction<Object> nextRestriction = entry.getValue();
@@ -24,5 +24,13 @@ public abstract class BaseSchema {
     public final void clear() {
         this.isRequired = false;
         this.restrictions.clear();
+    }
+
+    protected final void addRestriction(EnumRestriction name, Restriction<Object> restriction) {
+        this.restrictions.put(name, restriction);
+    }
+
+    protected final void setRequired() {
+        this.isRequired = true;
     }
 }

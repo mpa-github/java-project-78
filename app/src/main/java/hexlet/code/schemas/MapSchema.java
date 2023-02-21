@@ -5,14 +5,14 @@ import java.util.Map;
 public final class MapSchema extends BaseSchema {
 
     public MapSchema required() {
-        this.isRequired = true;
+        setRequired();
         return this;
     }
 
     public MapSchema sizeof(int size) {
-        Restriction<Object> restriction = (map) -> map instanceof Map<?, ?>
-                && ((Map<?, ?>) map).size() == size;
-        this.restrictions.put(EnumRestriction.SIZE_OF, restriction);
+        Restriction<Object> restriction = (object) -> object instanceof Map<?, ?>
+                && ((Map<?, ?>) object).size() == size;
+        addRestriction(EnumRestriction.SIZE_OF, restriction);
         return this;
     }
 
@@ -30,7 +30,7 @@ public final class MapSchema extends BaseSchema {
             }
             return true;
         };
-        this.restrictions.put(EnumRestriction.SHAPE, restriction);
+        addRestriction(EnumRestriction.SHAPE, restriction);
         return this;
     }
 }

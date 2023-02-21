@@ -41,8 +41,7 @@ class StringSchemaTest {
         assertFalse(schema.contains(WORD).isValid(SOME_STRING));
 
         assertFalse(schema.minLength(8).isValid(LENGTH_8_STRING));
-        assertTrue(schema.contains(LENGTH).minLength(8).isValid(LENGTH_8_STRING));
-        assertTrue(schema.minLength(8).isValid(LENGTH_8_STRING));
+        assertTrue(schema.contains(LENGTH).isValid(LENGTH_8_STRING));
         assertFalse(schema.contains(WORD).isValid(WORD));
 
         schema.clear();
