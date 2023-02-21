@@ -12,9 +12,6 @@ public abstract class BaseSchema {
         if (!isRequired && object == null) {
             return true;
         }
-        /*if (isRequired && object == null) {
-            return false;
-        }*/
         for (Map.Entry<EnumRestriction, Restriction<Object>> entry : this.restrictions.entrySet()) {
             Restriction<Object> nextRestriction = entry.getValue();
             if (!nextRestriction.check(object)) {
@@ -27,7 +24,6 @@ public abstract class BaseSchema {
     public final void clear() {
         this.isRequired = false;
         this.restrictions.keySet().removeIf(key -> !(key.equals(EnumRestriction.IS_INSTANCE)));
-        //this.restrictions.clear();
     }
 
     protected final void addRestriction(EnumRestriction name, Restriction<Object> restriction) {
