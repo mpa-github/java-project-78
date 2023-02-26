@@ -3,8 +3,6 @@
 Data validator is a library that can be used to check the correctness of any data. <br>
 First, we are talking about the data of forms filled out by users. <br>
 
-[Watch application demo.]() <br>
-
 ### Project badges status:
 | Badge         | Status |
 |---------------|--------|

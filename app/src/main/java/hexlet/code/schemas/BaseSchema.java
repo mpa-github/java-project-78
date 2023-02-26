@@ -1,5 +1,8 @@
 package hexlet.code.schemas;
 
+import hexlet.code.restrictions.EnumRestriction;
+import hexlet.code.restrictions.Restriction;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 

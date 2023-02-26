@@ -1,5 +1,8 @@
 package hexlet.code.schemas;
 
+import hexlet.code.restrictions.EnumRestriction;
+import hexlet.code.restrictions.Restriction;
+
 public final class NumberSchema extends BaseSchema {
 
     public NumberSchema() {

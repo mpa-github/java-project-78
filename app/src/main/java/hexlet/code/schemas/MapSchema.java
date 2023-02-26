@@ -1,5 +1,8 @@
 package hexlet.code.schemas;
 
+import hexlet.code.restrictions.EnumRestriction;
+import hexlet.code.restrictions.Restriction;
+
 import java.util.Map;
 
 public final class MapSchema extends BaseSchema {
@@ -26,7 +29,7 @@ public final class MapSchema extends BaseSchema {
             for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
                 String key = entry.getKey();
                 BaseSchema keyValueSchema = entry.getValue();
-                if (mapToValidate.containsKey(key) && !keyValueSchema.isValid(mapToValidate.get(key))) {
+                if (!mapToValidate.containsKey(key) || !keyValueSchema.isValid(mapToValidate.get(key))) {
                     return false;
                 }
             }

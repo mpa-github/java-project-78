@@ -1,8 +1,9 @@
 package hexlet.code.schemas;
 
-public final class StringSchema extends BaseSchema {
+import hexlet.code.restrictions.EnumRestriction;
+import hexlet.code.restrictions.Restriction;
 
-    private static final String EMPTY_STRING = "";
+public final class StringSchema extends BaseSchema {
 
     public StringSchema() {
         Restriction<Object> restriction = (object) -> object instanceof String;
@@ -11,7 +12,7 @@ public final class StringSchema extends BaseSchema {
 
     public StringSchema required() {
         setRequired();
-        Restriction<Object> restriction = (object) -> !object.equals(EMPTY_STRING);
+        Restriction<Object> restriction = (object) -> !((String) object).isEmpty();
         addRestriction(EnumRestriction.NOT_EMPTY, restriction);
         return this;
     }

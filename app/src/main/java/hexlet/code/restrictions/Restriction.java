@@ -1,4 +1,4 @@
-package hexlet.code.schemas;
+package hexlet.code.restrictions;
 
 @FunctionalInterface
 public interface Restriction<T> {
