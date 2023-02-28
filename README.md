@@ -17,9 +17,3 @@ First, we are talking about the data of forms filled out by users. <br>
 ```sh
 make -C app build
 ```
-
-### Start
-
-```sh
-make -C app run
-```
